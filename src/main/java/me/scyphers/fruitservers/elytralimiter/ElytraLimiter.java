@@ -1,11 +1,11 @@
 package me.scyphers.fruitservers.elytralimiter;
 
+import me.scyphers.fruitservers.elytralimiter.api.ElytraTracker;
 import me.scyphers.fruitservers.elytralimiter.api.Messenger;
 import me.scyphers.fruitservers.elytralimiter.command.CommandFactory;
 import me.scyphers.fruitservers.elytralimiter.config.Settings;
 import me.scyphers.fruitservers.elytralimiter.config.SimpleFileManager;
 import me.scyphers.fruitservers.elytralimiter.event.EventListener;
-import me.scyphers.fruitservers.elytralimiter.gui.signs.SignManager;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -16,8 +16,6 @@ import java.util.List;
 public final class ElytraLimiter extends JavaPlugin {
 
     private SimpleFileManager configManager;
-
-    private SignManager signManager;
 
     private boolean successfulEnable = false;
 
@@ -32,8 +30,6 @@ public final class ElytraLimiter extends JavaPlugin {
             e.printStackTrace();
             getServer().getPluginManager().disablePlugin(this);
         }
-
-        this.signManager = new SignManager(this);
 
         // Register the Admin Command
         CommandFactory commandFactory = new CommandFactory(this);
@@ -66,16 +62,16 @@ public final class ElytraLimiter extends JavaPlugin {
         return configManager;
     }
 
-    public SignManager getSignManager() {
-        return signManager;
-    }
-
     public Settings getSettings() {
         return configManager.getSettings();
     }
 
     public Messenger getMessenger() {
         return configManager.getMessenger();
+    }
+
+    public ElytraTracker getElytraTracker() {
+        return configManager.getElytraTrackerFile();
     }
 
     public List<String> getSplashText() {

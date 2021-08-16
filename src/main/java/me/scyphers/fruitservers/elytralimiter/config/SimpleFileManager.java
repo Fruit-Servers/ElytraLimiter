@@ -10,6 +10,7 @@ public class SimpleFileManager implements FileManager {
     // Config Files
     private final Settings settings;
     private final MessengerFile messengerFile;
+    private final ElytraTrackerFile elytraTrackerFile;
 
     private boolean safeToSave = true;
 
@@ -19,6 +20,7 @@ public class SimpleFileManager implements FileManager {
         this.plugin = plugin;
         this.settings = new Settings(this);
         this.messengerFile = new MessengerFile(this);
+        this.elytraTrackerFile = new ElytraTrackerFile(this);
 
         // Schedule a repeating task to save the configs
         int saveTicks = settings.getSaveTicks();
@@ -29,12 +31,14 @@ public class SimpleFileManager implements FileManager {
     public void reloadConfigs() throws Exception {
         settings.reload();
         messengerFile.reload();
+        elytraTrackerFile.reload();
     }
 
     @Override
     public void saveAll() throws Exception {
         settings.save();
         messengerFile.save();
+        elytraTrackerFile.save();
     }
 
     @Override
@@ -69,5 +73,9 @@ public class SimpleFileManager implements FileManager {
 
     public MessengerFile getMessenger() {
         return messengerFile;
+    }
+
+    public ElytraTrackerFile getElytraTrackerFile() {
+        return elytraTrackerFile;
     }
 }
