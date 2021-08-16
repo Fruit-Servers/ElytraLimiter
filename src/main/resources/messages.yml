@@ -8,7 +8,7 @@
 # e.g. noPermission: "[NO_PREFIX]&cYou do not have permission to use that command"
 
 # Prefix for all messages
-prefix: "[PLUGIN_NAME] "
+prefix: "&7[&dElytra&5Limiter&7] &f"
 
 errorMessages:
   noPermission: "&cYou do not have permission for that command"

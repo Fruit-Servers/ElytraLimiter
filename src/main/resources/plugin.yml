@@ -1,8 +1,19 @@
-main:
-name:
-version:
+main: me.scyphers.fruitservers.elytralimiter.ElytraLimiter
+name: ElytraLimiter
+version: 1.0
 api-version: 1.17
 author: Scyphers
 commands:
-  admin:
+  elytralimiter:
     description: "Reloads the plugin"
+
+permissions:
+  elytralimiter.commands:
+    default: op
+    description: Ability to use the command
+  elytralimiter.commands.reload:
+    default: op
+    description: reloads the plugin
+  elytralimiter.override:
+    default: op
+    description: Allows the player to be ignored for the elytra limit
