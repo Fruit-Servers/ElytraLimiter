@@ -4,8 +4,11 @@ version: 1.0
 api-version: 1.17
 author: Scyphers
 commands:
-  elytralimiter:
-    description: "Reloads the plugin"
+  elimiter:
+    permission: elytralimiter.commands
+    description: View the collection for your players island
+    usage: "/elimiter [args]"
+    aliases: [elytralimiter]
 
 permissions:
   elytralimiter.commands:
@@ -14,6 +17,9 @@ permissions:
   elytralimiter.commands.reload:
     default: op
     description: reloads the plugin
+  elytralimiter.commands.reset:
+    default: op
+    description: resets a players elytra count
   elytralimiter.override:
     default: op
     description: Allows the player to be ignored for the elytra limit
