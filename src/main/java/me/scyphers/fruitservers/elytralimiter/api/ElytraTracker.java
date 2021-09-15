@@ -8,4 +8,6 @@ public interface ElytraTracker {
 
     void addElytra(UUID uuid);
 
+    void setElytraAmount(UUID uuid, int amount);
+
 }

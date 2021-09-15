@@ -24,7 +24,7 @@ public class ElytraTrackerFile extends ConfigStorageFile implements ElytraTracke
     }
 
     @Override
-    public void load(YamlConfiguration storageFile) throws Exception {
+    public void load(YamlConfiguration storageFile) {
         this.tracker = new HashMap<>();
         for (String playerKey : storageFile.getKeys(false)) {
             UUID uuid = UUID.fromString(playerKey);
@@ -34,7 +34,7 @@ public class ElytraTrackerFile extends ConfigStorageFile implements ElytraTracke
     }
 
     @Override
-    public void saveData(YamlConfiguration configuration) throws Exception {
+    public void saveData(YamlConfiguration configuration) {
         for (UUID key : tracker.keySet()) {
             configuration.set(tracker.toString(), tracker.get(key));
         }
@@ -53,5 +53,10 @@ public class ElytraTrackerFile extends ConfigStorageFile implements ElytraTracke
         } else {
             this.tracker.put(uuid, 1);
         }
+    }
+
+    @Override
+    public void setElytraAmount(UUID uuid, int amount) {
+        this.tracker.put(uuid, amount);
     }
 }
