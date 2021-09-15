@@ -1,6 +1,8 @@
 package me.scyphers.fruitservers.elytralimiter.config;
 
 import me.scyphers.fruitservers.elytralimiter.api.ElytraTracker;
+import me.scyphers.scycore.config.ConfigStorageFile;
+import me.scyphers.scycore.config.FileManager;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.util.HashMap;

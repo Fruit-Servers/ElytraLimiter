@@ -1,21 +1,21 @@
 package me.scyphers.fruitservers.elytralimiter;
 
 import me.scyphers.fruitservers.elytralimiter.api.ElytraTracker;
-import me.scyphers.fruitservers.elytralimiter.api.Messenger;
 import me.scyphers.fruitservers.elytralimiter.command.CommandFactory;
+import me.scyphers.fruitservers.elytralimiter.config.ElytraFileManager;
 import me.scyphers.fruitservers.elytralimiter.config.Settings;
-import me.scyphers.fruitservers.elytralimiter.config.SimpleFileManager;
 import me.scyphers.fruitservers.elytralimiter.event.EventListener;
+import me.scyphers.scycore.BasePlugin;
+import me.scyphers.scycore.api.Messenger;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
 import java.util.List;
 
-public final class ElytraLimiter extends JavaPlugin {
+public final class ElytraLimiter extends BasePlugin {
 
-    private SimpleFileManager configManager;
+    private ElytraFileManager fileManager;
 
     private boolean successfulEnable = false;
 
@@ -24,7 +24,7 @@ public final class ElytraLimiter extends JavaPlugin {
 
         // Register the Config Manager
         try {
-            this.configManager = new SimpleFileManager(this);
+            this.fileManager = new ElytraFileManager(this);
         } catch (Exception e) {
             getLogger().warning("Something went wrong loading configs!");
             e.printStackTrace();
@@ -44,13 +44,14 @@ public final class ElytraLimiter extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        if (!successfulEnable) return;
+
     }
 
+    @Override
     public void reload(CommandSender sender) {
         try {
             sender.sendMessage("Reloading...");
-            configManager.reloadConfigs();
+            fileManager.reloadConfigs();
             sender.sendMessage("Successfully reloaded!");
         } catch (Exception e) {
             sender.sendMessage("Error reloading! Check console for logs!");
@@ -58,20 +59,27 @@ public final class ElytraLimiter extends JavaPlugin {
         }
     }
 
-    public SimpleFileManager getConfigManager() {
-        return configManager;
+    @Override
+    public boolean wasSuccessfulEnable() {
+        return successfulEnable;
     }
 
-    public Settings getSettings() {
-        return configManager.getSettings();
+    @Override
+    public ElytraFileManager getFileManager() {
+        return fileManager;
+    }
+
+    @Override
+    public Settings getFileSettings() {
+        return fileManager.getSettings();
     }
 
     public Messenger getMessenger() {
-        return configManager.getMessenger();
+        return fileManager.getMessenger();
     }
 
     public ElytraTracker getElytraTracker() {
-        return configManager.getElytraTrackerFile();
+        return fileManager.getElytraTrackerFile();
     }
 
     public List<String> getSplashText() {
