@@ -1,17 +1,20 @@
 package me.scyphers.fruitservers.elytralimiter;
 
 import me.scyphers.fruitservers.elytralimiter.api.ElytraTracker;
-import me.scyphers.fruitservers.elytralimiter.command.CommandFactory;
+import me.scyphers.fruitservers.elytralimiter.command.ResetCommand;
 import me.scyphers.fruitservers.elytralimiter.config.ElytraFileManager;
 import me.scyphers.fruitservers.elytralimiter.config.Settings;
 import me.scyphers.fruitservers.elytralimiter.event.EventListener;
 import me.scyphers.scycore.BasePlugin;
 import me.scyphers.scycore.api.Messenger;
+import me.scyphers.scycore.command.CommandFactory;
+import me.scyphers.scycore.command.commands.ReloadCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public final class ElytraLimiter extends BasePlugin {
 
@@ -31,10 +34,13 @@ public final class ElytraLimiter extends BasePlugin {
             getServer().getPluginManager().disablePlugin(this);
         }
 
-        // Register the Admin Command
-        CommandFactory commandFactory = new CommandFactory(this);
-        this.getCommand("elytralimiter").setExecutor(commandFactory);
-        this.getCommand("elytralimiter").setTabCompleter(commandFactory);
+        // Register the Elytra Admin Command
+        CommandFactory elytraCommandFactory = new CommandFactory(this, "elimiter", Map.of(
+                "reload", new ReloadCommand(this, "elytralimiter.commands.reload"),
+                "reset", new ResetCommand(this, "elytralimiter.commands.reset", this.getElytraTracker())
+        ));
+        this.getCommand("elimiter").setExecutor(elytraCommandFactory);
+        this.getCommand("elimiter").setTabCompleter(elytraCommandFactory);
 
         Bukkit.getPluginManager().registerEvents(new EventListener(this), this);
 
@@ -70,7 +76,7 @@ public final class ElytraLimiter extends BasePlugin {
     }
 
     @Override
-    public Settings getFileSettings() {
+    public Settings getSettings() {
         return fileManager.getSettings();
     }
 
