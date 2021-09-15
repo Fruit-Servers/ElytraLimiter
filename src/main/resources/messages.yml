@@ -12,5 +12,11 @@ prefix: "&7[&dElytra&5Limiter&7] &f"
 
 errorMessages:
   noPermission: "&cYou do not have permission for that command"
+  playerNotFound: "&cCannot find player with name: &6%player%"
   invalidCommand: "&cThat command wasn't recognised"
-  cannotOpenSign: "&cCould not display sign information. Please try again in a few moments."
+  invalidCommandLength: "&cInvalid command length!"
+  invalidCommandArgument: "&cInvalid command argument '&6%arg%&c'. Must be one of &6%expected%"
+
+elytraMessages:
+  acquiredElytra: "&aYou have acquired an &delytra! &aYou can collect %6%count% &amore elytras!"
+  elytraLimitReached: "&cYou have reached your limit of &6%max% &celytras"
