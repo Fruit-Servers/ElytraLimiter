@@ -7,4 +7,4 @@ maxElytras: 2
 
 # The worlds this plugin listens to
 worlds:
-  - "world_end"
+  - "world_the_end"
