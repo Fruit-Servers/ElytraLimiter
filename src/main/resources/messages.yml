@@ -18,5 +18,5 @@ errorMessages:
   invalidCommandArgument: "&cInvalid command argument '&6%arg%&c'. Must be one of &6%expected%"
 
 elytraMessages:
-  acquiredElytra: "&aYou have acquired an &delytra! &aYou can collect %6%count% &amore elytras!"
+  acquiredElytra: "&aYou have acquired an &delytra! &aYou can collect &6%count% &amore elytras!"
   elytraLimitReached: "&cYou have reached your limit of &6%max% &celytras"
